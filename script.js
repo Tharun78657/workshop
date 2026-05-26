@@ -121,24 +121,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const zone = document.getElementById('registration-zone');
             if (zone) {
                 zone.innerHTML = `
-                    <div class="success-state">
-                        <div class="success-icon">
+                    <div class="success-state" style="text-align: center;">
+                        <div class="success-icon" style="font-size: 3rem; color: #22c55e; margin-bottom: 15px;">
                             <i class="fa-solid fa-circle-check"></i>
                         </div>
                         <h2>You're Registered! 🎉</h2>
-                        <p class="success-name">Welcome, <strong>${name}</strong>!</p>
-                        <p class="success-desc">
-                            You've successfully reserved your free seat for the<br>
-                            <strong>AI for AWS &amp; DevOps Workshop</strong><br>
-                            on Sunday at 10:00 AM.
+                        <p class="success-desc" style="color: var(--muted); margin-bottom: 20px;">
+                            Please complete your registration using the buttons below:
                         </p>
-                        <p class="success-sub">Check your WhatsApp &amp; email for the workshop link.</p>
-                        <a href="https://wa.me/your-group-link" target="_blank" class="btn-whatsapp-large whatsapp-pulse" style="margin-top:20px;">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <span>Join Community Group</span>
-                        </a>
+                        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                            <a href="https://us06web.zoom.us/webinar/register/WN_lEKy8YM0Sq6DA8MrtRq8DQ" target="_blank" class="btn-hero-primary btn-blinking" style="width: 100%; justify-content: center;">
+                                <i class="fa-solid fa-video"></i>
+                                <span>Step 1: Register on Zoom</span>
+                            </a>
+                            <a href="https://chat.whatsapp.com/L9NUERJlbsR3c6IxXkZlSG?mode=ems_share_c" target="_blank" class="btn-whatsapp-large whatsapp-pulse" style="width: 100%; justify-content: center;">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Step 2: Join WhatsApp</span>
+                            </a>
+                        </div>
                     </div>
                 `;
+            }
+
+            const modal = document.getElementById('success-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
             }
 
             // Launch confetti
@@ -196,5 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         if (canvas) { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     });
+
+    const closeModalBtn = document.getElementById('close-modal');
+    const successModal = document.getElementById('success-modal');
+    if (closeModalBtn && successModal) {
+        closeModalBtn.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+    }
 
 });
